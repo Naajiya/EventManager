@@ -10,14 +10,23 @@ import Form from 'react-bootstrap/Form';
 
 
 function Landing() {
+
+    const [eventDetails, setEventDetails] = useState({ eventName: '', eventPlace: '', eventDate: '', eventStartTime: '', eventEndsTime: '' })
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const timeControl=(e)=>{
-        console.log(e)
+    
+
+    const hanldeAddEvent=()=>{
+        const eventDetails={eventName,eventPlace, eventDate, eventStartTime,eventEndsTime}
+        if(eventName && eventPlace && eventDate && eventStartTime && eventEndsTime){
+            console.log('success')
+        }
+
     }
+
 
     return (
 
@@ -37,7 +46,7 @@ function Landing() {
 
                         <div className='d-flex'>
                             <Col lg={4}>
-                                <Card className='border rounded-4 bg-secondary m-2 shadow position-absolute'>
+                                <Card className='border rounded-4 bg-secondary m-2 shadow position-absolute' >
 
                                     <Card.Body>
                                         <Card.Title>Music Program</Card.Title>
@@ -48,8 +57,8 @@ function Landing() {
                                     </Card.Body>
 
                                     <div className='calender-box shadow'>
-                                        <p>JUN
-
+                                        <p>
+                                            JUN
                                         </p>
                                         <p style={{ marginTop: '-20px' }}>12</p>
 
@@ -76,6 +85,7 @@ function Landing() {
                     onHide={handleClose}
                     backdrop="static"
                     keyboard={false}
+
                 >
                     <Modal.Header closeButton>
                         <Modal.Title>Add Event</Modal.Title>
@@ -88,7 +98,7 @@ function Landing() {
                             label="Event Name"
                             className="mb-3"
                         >
-                            <Form.Control type='text' placeholder="Event Name" />
+                            <Form.Control onChange={(e)=>setEventDetails({...eventDetails,eventName:e.target.value})} type='text' placeholder="Event Name" />
                         </FloatingLabel>
 
                         {/* event location */}
@@ -97,29 +107,27 @@ function Landing() {
                             label="Event Category"
                             className="mb-3"
                         >
-                            <Form.Control type='text' placeholder="Event Category" />
+                            <Form.Control onChange={(e)=>setEventDetails({...eventDetails,eventPlace:e.target.value})} type='text' placeholder="Event Category" />
                         </FloatingLabel>
 
                         {/* event date */}
                         <FloatingLabel className="mb-3">
-                            <Form.Control type='date' placeholder="Event Category" />
+                            <Form.Control onChange={(e)=>setEventDetails({...eventDetails,eventDate:e.target.value})} type='date' placeholder="Event Category" />
                         </FloatingLabel>
 
                         {/* time */}
                         <FloatingLabel label='start time' className="mb-3">
-                            <Form.Control type='time' onChange={(e)=>timeControl(e.target.value)} placeholder="Event Category" />
+                            <Form.Control type='time' onChange={(e)=>setEventDetails({...eventDetails,eventStartTime:e.target.value})} placeholder="Event Category" />
                         </FloatingLabel>
 
                         <FloatingLabel label='end time' >
-                            <Form.Control type='time' onChange={(e)=>timeControl(e.target.value)} placeholder="Event Category" />
+                            <Form.Control type='time' onChange={(e)=>setEventDetails({...eventDetails,eventEndsTime:e.target.value})} placeholder="Event Category" />
                         </FloatingLabel>
 
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button variant="secondary" onClick={handleClose}>
-                            Close
-                        </Button>
-                        <Button variant="primary">Understood</Button>
+                        
+                        <Button variant="primary" onClick={hanldeAddEvent}>add</Button>
                     </Modal.Footer>
                 </Modal>
             </Container>
