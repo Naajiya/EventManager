@@ -6,6 +6,8 @@ import { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
+import { addEvent } from '../services/allApi';
+
 
 
 
@@ -17,12 +19,23 @@ function Landing() {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    
 
-    const hanldeAddEvent=()=>{
-        const eventDetails={eventName,eventPlace, eventDate, eventStartTime,eventEndsTime}
-        if(eventName && eventPlace && eventDate && eventStartTime && eventEndsTime){
+
+    const hanldeAddEvent = async () => {
+        const { eventName, eventPlace, eventDate, eventStartTime, eventEndsTime }=eventDetails
+        if (eventName && eventPlace && eventDate && eventStartTime && eventEndsTime) {
             console.log('success')
+            try {
+
+                const res = await addEvent(eventDetails)
+                console.log(res.data)
+
+            } catch (err) {
+                console.log(err)
+            }
+
+        } else {
+            alert('enter all fields')
         }
 
     }
@@ -93,13 +106,13 @@ function Landing() {
                     <Modal.Body>
 
                         {/* event name */}
-                        <FloatingLabel
-                            controlId="floatingTextarea"
-                            label="Event Name"
-                            className="mb-3"
-                        >
-                            <Form.Control onChange={(e)=>setEventDetails({...eventDetails,eventName:e.target.value})} type='text' placeholder="Event Name" />
-                        </FloatingLabel>
+                            <FloatingLabel
+                                controlId="floatingTextarea"
+                                label="Event Name"
+                                className="mb-3"
+                            >
+                                <Form.Control onChange={(e) => setEventDetails({ ...eventDetails, eventName: e.target.value })} type='text' placeholder="Event Name" />
+                            </FloatingLabel>
 
                         {/* event location */}
                         <FloatingLabel
@@ -107,26 +120,26 @@ function Landing() {
                             label="Event Category"
                             className="mb-3"
                         >
-                            <Form.Control onChange={(e)=>setEventDetails({...eventDetails,eventPlace:e.target.value})} type='text' placeholder="Event Category" />
+                            <Form.Control onChange={(e) => setEventDetails({ ...eventDetails, eventPlace: e.target.value })} type='text' placeholder="Event Category" />
                         </FloatingLabel>
 
                         {/* event date */}
                         <FloatingLabel className="mb-3">
-                            <Form.Control onChange={(e)=>setEventDetails({...eventDetails,eventDate:e.target.value})} type='date' placeholder="Event Category" />
+                            <Form.Control onChange={(e) => setEventDetails({ ...eventDetails, eventDate: e.target.value })} type='date' placeholder="Event Category" />
                         </FloatingLabel>
 
                         {/* time */}
                         <FloatingLabel label='start time' className="mb-3">
-                            <Form.Control type='time' onChange={(e)=>setEventDetails({...eventDetails,eventStartTime:e.target.value})} placeholder="Event Category" />
+                            <Form.Control type='time' onChange={(e) => setEventDetails({ ...eventDetails, eventStartTime: e.target.value })} placeholder="Event Category" />
                         </FloatingLabel>
 
                         <FloatingLabel label='end time' >
-                            <Form.Control type='time' onChange={(e)=>setEventDetails({...eventDetails,eventEndsTime:e.target.value})} placeholder="Event Category" />
+                            <Form.Control type='time' onChange={(e) => setEventDetails({ ...eventDetails, eventEndsTime: e.target.value })} placeholder="Event Category" />
                         </FloatingLabel>
 
                     </Modal.Body>
                     <Modal.Footer>
-                        
+
                         <Button variant="primary" onClick={hanldeAddEvent}>add</Button>
                     </Modal.Footer>
                 </Modal>
