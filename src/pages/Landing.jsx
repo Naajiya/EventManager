@@ -11,11 +11,18 @@ import { addEvent, getEvent } from '../services/allApi';
 
 
 
+
 function Landing() {
 
-    const [eventDetails, setEventDetails] = useState({ eventName: '', eventPlace: '', eventDate: '', eventStartTime: '', eventEndsTime: '' })
+    const [eventDetails, setEventDetails] = useState({ eventName: '', eventPlace: '', eventDate: { day: '', monthh: '', year: '' }, eventStartTime: '', eventEndsTime: '' })
     const [allEvents, setAllEvents] = useState([])
     const [show, setShow] = useState(false);
+    const [monthfromEvnt, setMonthFromEvnt] = useState('')
+    const [yearfromEvnt, setYearFromEvnt] = useState('')
+    const [dayfromEvnt, setDayFromEvnt] = useState('')
+    // console.log(monthfromEvnt)
+    // console.log(yearfromEvnt)
+    // console.log(dayfromEvnt)
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -30,12 +37,8 @@ function Landing() {
     const getAllEvents = async () => {
         try {
             const reslt = await getEvent()
-            // console.log('getEvent')
-            // console.log(reslt.data)
-
-
             if (reslt.status >= 200 && reslt.status < 300) {
-                // console.log('yes')
+
                 setAllEvents(reslt.data)
             }
         } catch (err) {
@@ -43,20 +46,22 @@ function Landing() {
         }
     }
 
+
+
     // when add event details
     const hanldeAddEvent = async () => {
+
         const { eventName, eventPlace, eventDate, eventStartTime, eventEndsTime } = eventDetails
-        if (eventName && eventPlace && eventDate && eventStartTime && eventEndsTime) {
+        console.log(eventDate)
+        if (eventName && eventPlace && eventDate.year && eventDate.day && eventDate.monthh && eventStartTime && eventEndsTime) {
             console.log('success')
+
+
             try {
 
-
                 const res = await addEvent(eventDetails)
-                handldate(eventDate)
-                // console.log(res.data)
+
                 handleClose()
-
-
 
             } catch (err) {
                 console.log(err)
@@ -68,9 +73,32 @@ function Landing() {
 
     }
 
+
+    // extract day month yaer
     const handldate = (evDate) => {
+
         console.log(evDate)
-        Month
+        const datex = new Date(evDate)
+
+        let mnth = datex.toLocaleString('default', { month: 'short' });
+        console.log(mnth)
+        let yar = datex.getFullYear()
+        console.log(yar)
+        let days = datex.getDate()
+        console.log(days)
+
+        setMonthFromEvnt(mnth)
+        setYearFromEvnt(yar)
+        setDayFromEvnt(days)
+
+        setEventDetails((previosState) => ({
+            ...previosState,
+            eventDate: {
+                ...previosState.eventDate, monthh: mnth, day: days, year: yar
+            }
+        }))
+
+
     }
 
 
@@ -81,7 +109,7 @@ function Landing() {
 
             <Container>
 
-                <Row >
+                <Row>
 
 
                     <Col lg={8} >
@@ -115,9 +143,9 @@ function Landing() {
 
                                                 <div className='calender-box shadow'>
                                                     <p>
-                                                        JUN
+                                                       {ev.eventDate.monthh}
                                                     </p>
-                                                    <p style={{ marginTop: '-20px' }}>12</p>
+                                                    <p style={{ marginTop: '-20px' }}>{ev.eventDate.day}</p>
 
                                                 </div>
 
@@ -141,7 +169,7 @@ function Landing() {
 
                     </Col>
                     <Col lg={4}>
-                        
+
                     </Col>
                 </Row>
 
@@ -177,10 +205,10 @@ function Landing() {
 
                         {/* event date */}
                         <FloatingLabel className="mb-3">
-                            <Form.Control onChange={(e) => setEventDetails({ ...eventDetails, eventDate: e.target.value })} type='date' placeholder="Event Category" />
+                            <Form.Control onChange={(e) => handldate(e.target.value)} type='date' placeholder="Event Category" />
                         </FloatingLabel>
 
-                        {/* time */}
+                        {/*start time */}
                         <FloatingLabel label='start time' className="mb-3">
                             <Form.Control type='time' onChange={(e) => setEventDetails({ ...eventDetails, eventStartTime: e.target.value })} placeholder="Event Category" />
                         </FloatingLabel>
