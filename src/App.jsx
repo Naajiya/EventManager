@@ -18,7 +18,7 @@ function App() {
     <Header/>
     <Routes>
       <Route element={<Landing/>} path='/'/>
-      <Route element={<Viewdetails/> }path='/viewdetails'/>
+      <Route element={<Viewdetails/> }path='/viewdetails/:id'/>
     </Routes>
      {/* <Landing/> */}
     </>

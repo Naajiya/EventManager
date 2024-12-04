@@ -1,17 +1,14 @@
 import React, { useEffect } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
 import { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import { addEvent, getEvent } from '../services/allApi';
-import { Link } from 'react-router-dom';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import Tooltip from 'react-bootstrap/Tooltip';
+import CardDetails from '../components/CardDetails';
 
 
 
@@ -22,7 +19,7 @@ function Landing() {
 
     const [value, onChange] = useState(new Date());
 
-    const [eventDetails, setEventDetails] = useState({ eventName: '', eventPlace: '', eventDate: { day: '', monthh: '', year: '' }, eventStartTime: '', eventEndsTime: '', })
+    const [eventDetails, setEventDetails] = useState({ eventName: '', eventPlace: '', eventDate:[ { day: '', monthh: '', year: '' }], eventStartTime: '', eventEndsTime: '', })
     const [allEvents, setAllEvents] = useState([])
     const [show, setShow] = useState(false);
     const [monthfromEvnt, setMonthFromEvnt] = useState('')
@@ -35,11 +32,7 @@ function Landing() {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const renderTooltip = (props) => (
-        <Tooltip id="button-tooltip" {...props}>
-            click 
-        </Tooltip>
-    );
+   
 
 
 
@@ -68,7 +61,7 @@ function Landing() {
 
         const { eventName, eventPlace, eventDate, eventStartTime, eventEndsTime } = eventDetails
         console.log(eventDate)
-        if (eventName && eventPlace && eventDate.year && eventDate.day && eventDate.monthh && eventStartTime && eventEndsTime) {
+        if (eventName && eventPlace && eventDate[0].year && eventDate[0].day && eventDate[0].monthh && eventStartTime && eventEndsTime) {
             console.log('success')
 
 
@@ -93,6 +86,7 @@ function Landing() {
     const handldate = (evDate) => {
 
         console.log(evDate)
+        console.log('evDate')
         const datex = new Date(evDate)
 
         let mnth = datex.toLocaleString('default', { month: 'short' });
@@ -106,12 +100,29 @@ function Landing() {
         setYearFromEvnt(yar)
         setDayFromEvnt(days)
 
-        setEventDetails((previosState) => ({
-            ...previosState,
-            eventDate: {
-                ...previosState.eventDate, monthh: mnth, day: days, year: yar
-            }
-        }))
+        // setEventDetails((previosState) => ({
+        //     ...previosState,
+        //     eventDate: [
+        //         {
+        //           ...previosState.eventDate[0], // Access the first object in the array
+        //           monthh: mnth,
+        //           day: days,
+        //           year: yar,
+        //         },
+        //       ],
+        // }))
+
+        setEventDetails((previousState) => ({
+            ...previousState,
+            eventDate: [
+                {
+                    ...previousState.eventDate[0],
+                    monthh: mnth,
+                    day: days,
+                    year: yar,
+                },
+            ],
+        }));
 
 
     }
@@ -130,11 +141,13 @@ function Landing() {
 
                     <Col lg={8} >
                         <Row className='d-flex justify-content-between'>
-                            <h2>Events</h2>
-                            <h5>Create Event  <Button variant="outline-dark" onClick={handleShow} className='m-2 pt-1'>
-                                <i class="fa-solid fa-plus"></i>
-                            </Button>
-                            </h5>
+                           <Col><div> <h2>Events</h2></div></Col>
+                           <Col>
+                                <h5>Create Event  <Button variant="outline-dark" onClick={handleShow} className='m-2 pt-1'>
+                                    <i class="fa-solid fa-plus"></i>
+                                </Button>
+                                </h5>
+                           </Col>
 
 
                         </Row>
@@ -143,39 +156,12 @@ function Landing() {
 
                             {
                                 allEvents.length > 0 ?
-                                    allEvents?.map(ev => (
-
-                                        <Col lg={4} className="mb-3 mt-3">
-                                            <OverlayTrigger
-                                                placement="right"
-                                                delay={{ show: 250, hide: 400 }}
-                                                overlay={renderTooltip}
-                                            >
-                                                <Link to='/viewdetails' style={{textDecoration:'none'}}>
-                                                <Card className="border rounded-4 bg-secondary shadow" style={{ width: '12rem' }}>
-                                                    <Card.Body>
-                                                        <Card.Title>{ev.eventName}</Card.Title>
-                                                        <Card.Text>
-                                                            <h6>{ev.eventPlace}</h6>
-                                                            <p>{ev.eventStartTime} - {ev.eventEndsTime}</p>
-                                                        </Card.Text>
-                                                    </Card.Body>
-
-                                                    <div className='d-flex mb-2 justify-content-start pe-5 '>
-                                                        <div className='me-2'><i class="fa-solid fa-trash"></i></div>
-                                                        <div className='ms-2'><i class="fa-solid fa-file-pen"></i></div>
-                                                    </div>
-
-                                                    <div className="calender-box shadow">
-                                                        <p>{ev.eventDate.monthh}</p>
-                                                        <p style={{ marginTop: '-20px' }}>{ev.eventDate.day}</p>
-                                                    </div>
-                                                </Card>
-                                                </Link>
-                                            </OverlayTrigger>
-
-
+                                    allEvents?.map(eventsEach => (
+                                        <Col>
+                                        <CardDetails eventsEach={eventsEach}/>
                                         </Col>
+
+                                       
 
 
                                     ))
