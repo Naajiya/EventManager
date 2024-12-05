@@ -1,54 +1,86 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 import { Link } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
-import { Col, Container, Row } from 'react-bootstrap'
+import { Button, Col, Container, Row } from 'react-bootstrap'
+import { deletEvent } from '../services/allApi';
+import { useState } from 'react';
 
-function CardDetails({ eventsEach }) {
-    console.log(eventsEach)
-    console.log('eventsEach')
+
+
+function CardDetails({ eventsEach}) {
+    const dateObj=new Date(eventsEach.eventDate);
+    const day=dateObj.getDate()
+    const month=dateObj.toLocaleDateString("default",{month:"short"})
+   
 
     const renderTooltip = (props) => (
         <Tooltip id="button-tooltip" {...props}>
-            click 
+            click
         </Tooltip>
     );
+
+
+    const handleDelete = async (eventId) => {
+        try {
+            await deletEvent(eventId)
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+    useEffect(()=>{
+       
+    },[])
+
+
+    
+
 
     return (
         <>
             <Row className='d-flex'>
                 <Col lg={3} className="mb-3 mt-4">
 
-                    <OverlayTrigger
-                        placement="right"
-                        delay={{ show: 250, hide: 400 }}
-                        overlay={renderTooltip}
-                    >
+
+
+
+                    <Card className="border rounded-4 bg-secondary shadow " style={{ width: '12rem' }}>
+                        <div className='d-flex justify-content-between w-100 text-secondary-emphasis bg-light rounded-5 mt-1' >
+                            <div onClick={() => handleDelete(eventsEach.id)} className='ms-3 mt-2'><i class="fa-solid fa-trash"></i></div>
+                            <div className='me-3 mt-2'><i class="fa-solid fa-file-pen"></i></div>
+                        </div>
                         <Link to={`/viewdetails/${eventsEach.id}`} style={{ textDecoration: 'none' }}>
-                        
-                            <Card className="border rounded-4 bg-secondary shadow " style={{ width: '12rem' }}>
-                            <div className='d-flex justify-content-between w-100 text-secondary-emphasis'>
-                                   <div className='ms-3 mt-2'><i class="fa-solid fa-trash"></i></div>
-                                   <div className='me-3 mt-2'><i class="fa-solid fa-file-pen"></i></div>
-                                </div>
-                                <Card.Body>
-                                    <Card.Title>{eventsEach.eventName}</Card.Title>
+                            <OverlayTrigger
+                                placement="right"
+                                delay={{ show: 250, hide: 400 }}
+                                overlay={renderTooltip}>
+                                <div className='text-secondary-emphasis'>
+                                    <Card.Body>
+                                        <Card.Title>{eventsEach.eventName}</Card.Title>
+                                        <Card.Text>
+                                            <h6>{eventsEach.eventPlace}</h6>
+                                            <p>{eventsEach.eventStartTime} - {eventsEach.eventEndsTime}</p>
+                                        </Card.Text>
+
+
+                                    </Card.Body>
                                     <Card.Text>
-                                        <h6>{eventsEach.eventPlace}</h6>
-                                        <p>{eventsEach.eventStartTime} - {eventsEach.eventEndsTime}</p>
+                                    <div className="calender-box ">
+                                        <p>{day}</p>
+                                        <p className='box-info'>{month}</p>
+                                    </div>
                                     </Card.Text>
-                                </Card.Body>
-
-                                
-
-                                <div className="calender-box shadow mt-3">
-                                    <p>{eventsEach.eventDate[0].monthh}</p>
-                                    <p style={{ marginTop: '-20px' }}>{eventsEach.eventDate[0].day}</p>
                                 </div>
-                            </Card>
+                            </OverlayTrigger>
                         </Link>
-                    </OverlayTrigger>
+
+
+
+                    </Card>
+
+
 
 
                 </Col>

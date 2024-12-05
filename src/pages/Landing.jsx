@@ -15,24 +15,23 @@ import CardDetails from '../components/CardDetails';
 
 
 
+
 function Landing() {
 
     const [value, onChange] = useState(new Date());
 
-    const [eventDetails, setEventDetails] = useState({ eventName: '', eventPlace: '', eventDate:[ { day: '', monthh: '', year: '' }], eventStartTime: '', eventEndsTime: '', })
+    const [eventDetails, setEventDetails] = useState({ eventName: '', eventPlace: '', eventDate: '', eventStartTime: '', eventEndsTime: '', })
     const [allEvents, setAllEvents] = useState([])
     const [show, setShow] = useState(false);
     const [monthfromEvnt, setMonthFromEvnt] = useState('')
     const [yearfromEvnt, setYearFromEvnt] = useState('')
     const [dayfromEvnt, setDayFromEvnt] = useState('')
-    // console.log(monthfromEvnt)
-    // console.log(yearfromEvnt)
-    // console.log(dayfromEvnt)
+
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-   
+
 
 
 
@@ -61,7 +60,7 @@ function Landing() {
 
         const { eventName, eventPlace, eventDate, eventStartTime, eventEndsTime } = eventDetails
         console.log(eventDate)
-        if (eventName && eventPlace && eventDate[0].year && eventDate[0].day && eventDate[0].monthh && eventStartTime && eventEndsTime) {
+        if (eventName && eventPlace && eventDate && eventStartTime && eventEndsTime) {
             console.log('success')
 
 
@@ -100,6 +99,12 @@ function Landing() {
         setYearFromEvnt(yar)
         setDayFromEvnt(days)
 
+        setEventDetails({ ...eventDetails, eventDate: evDate })
+
+        console.log(monthfromEvnt)
+        console.log(yearfromEvnt)
+        console.log(dayfromEvnt)
+
         // setEventDetails((previosState) => ({
         //     ...previosState,
         //     eventDate: [
@@ -112,17 +117,7 @@ function Landing() {
         //       ],
         // }))
 
-        setEventDetails((previousState) => ({
-            ...previousState,
-            eventDate: [
-                {
-                    ...previousState.eventDate[0],
-                    monthh: mnth,
-                    day: days,
-                    year: yar,
-                },
-            ],
-        }));
+
 
 
     }
@@ -141,13 +136,13 @@ function Landing() {
 
                     <Col lg={8} >
                         <Row className='d-flex justify-content-between'>
-                           <Col><div> <h2>Events</h2></div></Col>
-                           <Col>
+                            <Col><div> <h2>Events</h2></div></Col>
+                            <Col>
                                 <h5>Create Event  <Button variant="outline-dark" onClick={handleShow} className='m-2 pt-1'>
                                     <i class="fa-solid fa-plus"></i>
                                 </Button>
                                 </h5>
-                           </Col>
+                            </Col>
 
 
                         </Row>
@@ -158,10 +153,10 @@ function Landing() {
                                 allEvents.length > 0 ?
                                     allEvents?.map(eventsEach => (
                                         <Col>
-                                        <CardDetails eventsEach={eventsEach}/>
+                                            <CardDetails eventsEach={eventsEach} />
                                         </Col>
 
-                                       
+
 
 
                                     ))
