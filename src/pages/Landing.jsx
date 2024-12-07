@@ -169,7 +169,7 @@ function Landing() {
                         </Row>
 
                     </Col>
-                    <Col lg={4}>
+                    <Col lg={4} className='bg-dark p-2 mt-5'>
                         {/* <Calendr allEvents={allEvents}/> */}
                         <Calendar onChange={onChange} value={value} />
                         {/* <Link to='/calender'><Button className='m-2' variant="primary">View your events by calender</Button></Link> */}
@@ -198,13 +198,13 @@ function Landing() {
                         </FloatingLabel>
 
                         {/* event location */}
-                        <FloatingLabel
-                            controlId="floatingTextarea"
-                            label="Event Category"
-                            className="mb-3"
-                        >
-                            <Form.Control onChange={(e) => setEventDetails({ ...eventDetails, eventPlace: e.target.value })} type='text' placeholder="Event Category" />
-                        </FloatingLabel>
+                            <FloatingLabel
+                                controlId="floatingTextarea"
+                                label="Event Category"
+                                className="mb-3"
+                            >
+                                <Form.Control onChange={(e) => setEventDetails({ ...eventDetails, eventPlace: e.target.value })} type='text' placeholder="Event Category" />
+                            </FloatingLabel>
 
                         {/* event date */}
                         <FloatingLabel className="mb-3">

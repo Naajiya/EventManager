@@ -6,6 +6,8 @@ import Card from 'react-bootstrap/Card';
 import { Button, Col, Container, Row } from 'react-bootstrap'
 import { deletEvent } from '../services/allApi';
 import { useState } from 'react';
+import Modal from 'react-bootstrap/Modal';
+
 
 
 
@@ -13,6 +15,12 @@ function CardDetails({ eventsEach}) {
     const dateObj=new Date(eventsEach.eventDate);
     const day=dateObj.getDate()
     const month=dateObj.toLocaleDateString("default",{month:"short"})
+
+
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
    
 
     const renderTooltip = (props) => (
@@ -46,10 +54,10 @@ function CardDetails({ eventsEach}) {
 
 
 
-                    <Card className="border rounded-4 bg-secondary shadow " style={{ width: '12rem' }}>
+                    <Card className="border rounded-4 bg-secondary shadow " style={{ width: '11rem' }}>
                         <div className='d-flex justify-content-between w-100 text-secondary-emphasis bg-light rounded-5 mt-1' >
                             <div onClick={() => handleDelete(eventsEach.id)} className='ms-3 mt-2'><i class="fa-solid fa-trash"></i></div>
-                            <div className='me-3 mt-2'><i class="fa-solid fa-file-pen"></i></div>
+                            <div className='me-3 mt-2'><i onClick={handleShow} class="fa-solid fa-file-pen"></i></div>
                         </div>
                         <Link to={`/viewdetails/${eventsEach.id}`} style={{ textDecoration: 'none' }}>
                             <OverlayTrigger
@@ -84,6 +92,28 @@ function CardDetails({ eventsEach}) {
 
 
                 </Col>
+
+
+                <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Modal title</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          I will not close if you click outside me. Do not even try to press
+          escape key.
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary">Understood</Button>
+        </Modal.Footer>
+      </Modal>
 
             </Row>
         </>
