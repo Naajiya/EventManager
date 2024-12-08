@@ -41,21 +41,38 @@ function EditEvent() {
     }
 
 
-    const handleChange=(value)=>{
-        setEventUpdate({ ...eventUpdate, eventName: value })
+    const handleChangeName=(value)=>{
+        setEventUpdate({ ...eventUpdate,eventName : value })
     }
+
+    const handleChangePlace=(value)=>{
+        setEventUpdate({...eventUpdate,eventPlace:value})
+    }
+
+    const handleChangeDate=(value)=>{
+        setEventUpdate({...eventUpdate,eventDate:value})
+    }
+
+    const handleChangeStarTime=(value)=>{
+        setEventUpdate({...eventUpdate,eventStartTime:value})
+    }
+
+    const handleChagneEndTime=(value)=>{
+        setEventUpdate({...eventUpdate,eventEndsTime:value})
+    }
+    
 
     return (
         <>
             <Container className='d-flex justify-content-center mt-4'>
-                <Row className='w-50 d-flex justify-content-center align-items-center'> 
+                <Row className='w-50 d-flex justify-content-center align-items-center border border-dark p-3 bg-tertiory'> 
                     <div className=''>
                         <FloatingLabel
                             controlId="floatingTextarea"
                             label="Event Name"
                             className="mb-3"
                         >
-                            <Form.Control value={eventUpdate.eventName} onChange={(e) => handleChange(e.target.value)} type='text' placeholder="Event Name" />
+                            <Form.Control value={eventUpdate.eventName} onChange={(e) => handleChangeName(e.target.value)} type='text' placeholder="Event Name" />
                         </FloatingLabel>
     
                         {/* event location */}
@@ -64,21 +81,21 @@ function EditEvent() {
                             label="Event Category"
                             className="mb-3"
                         >
-                            <Form.Control onChange={(e) => setEventDetails({ ...eventDetails, eventPlace: e.target.value })} type='text' placeholder="Event Category" />
+                            <Form.Control value={eventUpdate.eventPlace} onChange={(e) =>handleChangePlace(e.target.value)} type='text' placeholder="Event Category" />
                         </FloatingLabel>
     
                         {/* event date */}
                         <FloatingLabel className="mb-3">
-                            <Form.Control onChange={(e) => handldate(e.target.value)} type='date' placeholder="Event Category" />
+                            <Form.Control value={eventUpdate.eventDate} onChange={(e) => handleChangeDate(e.target.value)} type='date' placeholder="Event Category" />
                         </FloatingLabel>
     
                         {/*start time */}
                         <FloatingLabel label='start time' className="mb-3">
-                            <Form.Control type='time' onChange={(e) => setEventDetails({ ...eventDetails, eventStartTime: e.target.value })} placeholder="Event Category" />
+                            <Form.Control value={eventUpdate.eventStartTime} type='time' onChange={(e) => handleChangeStarTime(e.target.value)} placeholder="Event Category" />
                         </FloatingLabel>
     
                         <FloatingLabel label='end time' >
-                            <Form.Control type='time' onChange={(e) => setEventDetails({ ...eventDetails, eventEndsTime: e.target.value })} placeholder="Event Category" />
+                            <Form.Control value={eventUpdate.eventEndsTime}type='time' onChange={(e) => handleChagneEndTime(e.target.value)} placeholder="Event Category" />
                         </FloatingLabel>
                        
                     </div>
