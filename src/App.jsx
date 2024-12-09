@@ -7,6 +7,7 @@ import Header from './components/Header'
 import { Route, Routes } from 'react-router-dom'
 import Viewdetails from './pages/Viewdetails'
 import EditEvent from './pages/EditEvent'
+import FirstPage from './pages/FirstPage'
 
 
 
@@ -16,11 +17,12 @@ function App() {
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <Routes>
         <Route element={<Landing />} path='/' />
         <Route element={<Viewdetails />} path='/viewdetails/:id' />
         <Route element={<EditEvent />} path='/EditEvent/:empid' />
+        <Route element={<FirstPage/>} path='/FirstPage'/>
       </Routes>
       {/* <Landing/> */}
     </>

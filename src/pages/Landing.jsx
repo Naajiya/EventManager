@@ -9,6 +9,7 @@ import { addEvent, getEvent } from '../services/allApi';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import CardDetails from '../components/CardDetails';
+import { Link } from 'react-router-dom';
 
 
 
@@ -174,6 +175,7 @@ function Landing() {
                         <Calendar onChange={onChange} value={value} />
                         {/* <Link to='/calender'><Button className='m-2' variant="primary">View your events by calender</Button></Link> */}
                     </Col>
+                    <Link to={`/FirstPage`}>lkm</Link>
                 </Row>
 
                 <Modal

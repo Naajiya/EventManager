@@ -23,3 +23,53 @@
 .value{
   background-color: red;
 }
+
+.circleOne{
+  height: 300px;
+  width: 300px;
+  border-radius: 200px;
+  /* background-color: rgb(224, 210, 210); */
+  margin-top: 40px;
+  position: relative;
+  color: violet;
+  border: 6px solid #e9fafa;
+  
+}
+.circleOneinner1{
+  height: 280px;
+  width: 280px;
+  border-radius: 50%;
+  background-color: #5c8a8a;
+  border: 1px solid white;
+}
+
+.circleOneinner2{
+  height: 260px;
+  width: 260px;
+  border-radius: 50%;
+  background-color: rgb(34, 31, 31);
+}
+
+.circleOneinner3{
+  height: 245px;
+  width: 245px;
+  border-radius: 50%;
+  background-color: #b3cccc;
+  
+}
+
+.circleOneinner4{
+  height: 235px;
+  width: 236px;
+  border-radius: 50%;
+  border: #293d3d 1px solid;
+  background-color: #e6ffff;
+}
+
+.circleTwo{
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  background-color: #293d3d;
+  position: relative;
+}
