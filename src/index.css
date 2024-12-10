@@ -67,9 +67,90 @@
 }
 
 .circleTwo{
-  height: 150px;
-  width: 150px;
+  height: 140px;
+  width: 160px;
   border-radius: 50%;
+  background-color: #5c8a8a;
+  position: relative;
+  top: -10%;
+  left: -3%;
+}
+
+.circleThree{
+  height: 140px;
+  width: 160px;
+  border-radius: 50%;
+  background-color: #5c8a8a;
+  position: relative;
+  top: 32%;
+  left: -20%;
+}
+
+/* com */
+.circleFour{
+  height: 130px;
+  width: 160px;
+  border-radius: 50%;
+  background-color: #5c8a8a;
+  position: relative;
+  top: -10%;
+  left: 22%;
+}
+
+.circleFive{
+  height: 130px;
+  width: 160px;
+  border-radius: 50%;
+  background-color: #5c8a8a;
+  position: relative;
+  top: 30%;
+  left: 13%;
+}
+
+.circleSix{
+  height: 80px;
+  width: 100px;
+  border-radius: 50%;
+  background-color: #147a7a;
+  position: relative;
+  top: 10%;
+  left: -20%;
+}
+
+.circleSeven{
+  height: 90px;
+  width: 110px;
+  border-radius: 50%;
+  background-color: #aa2424;
+  position: relative;
+  top: 10%;
+  left: -10%;
+}
+
+.circleEight{
+  height: 60px;
+  width: 80px;
+  border-radius: 50%;
+  background-color: #f1ebeb;
+  position: relative;
+  top: 1%;
+  left: -19%;
+}
+
+.circleNine{
+  height: 80px;
+  width: 100px;
+  border-radius: 100%;
   background-color: #293d3d;
   position: relative;
+  top: 10%;
+  left: -20%;
+}
+
+
+.circleinnerIn{
+  height: 120px;
+  width: 115px;
+  border-radius: 50%;
+  background-color: #e6ffff;
 }
