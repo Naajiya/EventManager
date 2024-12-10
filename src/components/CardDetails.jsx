@@ -11,11 +11,11 @@ import { deletEvent } from '../services/allApi';
 
 function CardDetails({ eventsEach }) {
     const dateObj = new Date(eventsEach.eventDate);
-    const day = dateObj.getDate()+1
+    const day = dateObj.getDate() + 1
     const month = dateObj.toLocaleDateString("default", { month: "short" })
 
 
-   
+
 
 
     const renderTooltip = (props) => (
@@ -51,8 +51,17 @@ function CardDetails({ eventsEach }) {
 
                     <Card className="border rounded-4 bg-secondary shadow " style={{ width: '11rem' }}>
                         <div className='d-flex justify-content-between w-100 text-secondary-emphasis bg-light rounded-5 mt-1' >
-                            <div onClick={() => handleDelete(eventsEach.id)} className='ms-3 mt-2'><i class="fa-solid fa-trash"></i></div>
-                            <Link to={`/EditEvent/${eventsEach.id}`}><div className='me-3 mt-2'><i class="fa-solid fa-file-pen"></i></div></Link>
+
+                            <div onClick={() => handleDelete(eventsEach.id)} className='ms-3 mt-2'>
+                                <i class="fa-solid fa-trash"></i>
+                            </div>
+
+                            <Link to={`/EditEvent/${eventsEach.id}`}>
+                                <div className='me-3 mt-2'>
+                                    <i class="fa-solid fa-file-pen"></i>
+                                </div>
+                            </Link>
+                            
                         </div>
                         <Link to={`/viewdetails/${eventsEach.id}`} style={{ textDecoration: 'none' }}>
                             <OverlayTrigger
@@ -63,7 +72,7 @@ function CardDetails({ eventsEach }) {
                                     <Card.Body>
                                         <Card.Title>{eventsEach.eventName}</Card.Title>
                                         <Card.Text>
-                                            <h6>{eventsEach.eventPlace}</h6>
+                                            {/* <h6>{eventsEach.eventPlace}</h6> */}
                                             <p>{eventsEach.eventStartTime} - {eventsEach.eventEndsTime}</p>
                                         </Card.Text>
 
@@ -89,7 +98,7 @@ function CardDetails({ eventsEach }) {
                 </Col>
 
 
-               
+
 
             </Row>
         </>

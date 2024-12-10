@@ -129,10 +129,10 @@ function Landing() {
         <>
 
 
-            <Container>
+            <Container >
 
 
-                <Row>
+                <Row >
 
 
                     <Col lg={8} >
@@ -212,7 +212,7 @@ function Landing() {
                         {/* event location */}
                         <FloatingLabel
                             controlId="floatingTextarea"
-                            label="Event Category"
+                            label="Location"
                             className="mb-3"
                         >
                             <Form.Control onChange={(e) => setEventDetails({ ...eventDetails, eventPlace: e.target.value })} type='text' placeholder="Event Category" />

@@ -3,8 +3,9 @@ import { Container, Row } from 'react-bootstrap';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { getEvent, updateEvent } from '../services/allApi';
+
 
 
 
@@ -12,6 +13,7 @@ import { getEvent, updateEvent } from '../services/allApi';
 function EditEvent() {
 
     const {empid}=useParams()
+   const navigate=useNavigate()
     // console.log(empid)
 
     const [eventUpdate,setEventUpdate]=useState({})
@@ -49,6 +51,8 @@ function EditEvent() {
 
             try{
                 await updateEvent(id,eventUpdate)
+                alert("changes saved successfully")
+                navigate('/Landing')
                 // getEvent()
             }catch(err){
                 console.log(err)

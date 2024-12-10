@@ -44,16 +44,19 @@ function Viewdetails() {
 
   return (
     <Container>
-      <Row className='m-3 bg-dark p-5'>
+      <Row className='m-3 p-5' style={{backgroundColor:'#f1f8f8 '}}>
         <Col>
           <Calendar value={date} />
         </Col>
         <Col>
         {events ? (
         <div>
-          <h2>Name: {events.eventName}</h2>
+          <h2>Event: {events.eventName}</h2>
           <h2>Date: {events.eventDate}</h2>
-          <div className='bg-info p-3'><h2>Time: {events.eventStartTime} - {events.eventEndsTime}</h2></div>
+          <div className=' p-3 ' style={{backgroundColor:'#ffffff', color:'black'}}>
+            <p className='fs-2 fw-bold'>Time: {events.eventStartTime} - {events.eventEndsTime}</p>
+            <p className='fs-3 fw-bold'>Location:{events.eventPlace}</p>
+            </div>
         </div>
       ) 
            
