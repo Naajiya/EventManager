@@ -136,11 +136,11 @@ function Landing() {
 
 
                     <Col lg={8} >
-                        <Row className='d-flex justify-content-between'>
-                            <Col><div> <h2>Events</h2></div></Col>
-                            <Col>
-                                <h5>Create Event  <Button variant="outline-dark" onClick={handleShow} className='m-2 pt-1'>
-                                    <i class="fa-solid fa-plus"></i>
+                        <Row className='d-flex justify-content-center align-items-center text-center'>
+                            {/* <Col><div> <h2>Events</h2></div></Col> */}
+                            <Col className=' d-flex justify-content-start align-items-center'>
+                                <h5>Create Event  <Button variant="outline-dark" onClick={handleShow} className=' pt-1'>
+                                    <span> <i class="fa-solid fa-plus"></i></span>
                                 </Button>
                                 </h5>
                             </Col>
@@ -148,34 +148,44 @@ function Landing() {
 
                         </Row>
 
-                        <Row className='d-flex'>
+                        <Row className='d-flex justify-content-center align-items-center text-center'>
+                           
 
-                            {
-                                allEvents.length > 0 ?
-                                    allEvents?.map(eventsEach => (
-                                        <Col>
-                                            <CardDetails eventsEach={eventsEach} />
-                                        </Col>
+                                {
+                                    allEvents.length > 0 ?
+                                        allEvents?.map((eventsEach,index) => (
+                                            <Col xs={12} // Full-width on extra small screens
+                                            sm={6} // Half-width on small screens
+                                            md={4} // Third-width on medium screens
+                                            lg={4} // Quarter-width on large screens
+                                            key={index}
+                                            className="mb-4">
+                                                <CardDetails eventsEach={eventsEach} />
+                                            </Col>
 
 
 
 
-                                    ))
-                                    :
-                                    <p className='text-danger'>text danger</p>
-                            }
+                                        ))
+                                        :
+                                        <p className='text-danger'>text danger</p>
+                                }
 
+                            
 
 
                         </Row>
 
                     </Col>
-                    <Col lg={4} className='bg-dark p-2 mt-5'>
+                    <Col lg={4} className='d-flex  p-2 mt-5' style={{ marginTop: '10px' }}>
                         {/* <Calendr allEvents={allEvents}/> */}
-                        <Calendar onChange={onChange} value={value} />
+                        <div className=''>
+                            <h2>ToDay</h2>
+                            <Calendar onChange={onChange} value={value} />
+                        </div>
                         {/* <Link to='/calender'><Button className='m-2' variant="primary">View your events by calender</Button></Link> */}
                     </Col>
-                    <Link to={`/FirstPage`}>lkm</Link>
+                    {/* <Link to={`/FirstPage`}>lkm</Link> */}
                 </Row>
 
                 <Modal
@@ -200,13 +210,13 @@ function Landing() {
                         </FloatingLabel>
 
                         {/* event location */}
-                            <FloatingLabel
-                                controlId="floatingTextarea"
-                                label="Event Category"
-                                className="mb-3"
-                            >
-                                <Form.Control onChange={(e) => setEventDetails({ ...eventDetails, eventPlace: e.target.value })} type='text' placeholder="Event Category" />
-                            </FloatingLabel>
+                        <FloatingLabel
+                            controlId="floatingTextarea"
+                            label="Event Category"
+                            className="mb-3"
+                        >
+                            <Form.Control onChange={(e) => setEventDetails({ ...eventDetails, eventPlace: e.target.value })} type='text' placeholder="Event Category" />
+                        </FloatingLabel>
 
                         {/* event date */}
                         <FloatingLabel className="mb-3">

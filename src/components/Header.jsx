@@ -9,7 +9,7 @@ import Navbar from 'react-bootstrap/Navbar';
 function Header() {
   return (
     <>
-     <Navbar className="bg-body-tertiary">
+     <Navbar className="bg-body-tertiary w-100" style={{position:'sticky'}}>
       <Container>
         <Navbar.Brand href="#home">Eventfy</Navbar.Brand>
         <Navbar.Toggle />

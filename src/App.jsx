@@ -17,12 +17,12 @@ function App() {
 
   return (
     <>
-      {/* <Header /> */}
+      <Header />
       <Routes>
-        <Route element={<Landing />} path='/' />
+        <Route element={<Landing />} path='/Landing' />
         <Route element={<Viewdetails />} path='/viewdetails/:id' />
         <Route element={<EditEvent />} path='/EditEvent/:empid' />
-        <Route element={<FirstPage/>} path='/FirstPage'/>
+        <Route element={<FirstPage/>} path='/'/>
       </Routes>
       {/* <Landing/> */}
     </>

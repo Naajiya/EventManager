@@ -1,6 +1,8 @@
 import React from 'react'
 import { Container } from 'react-bootstrap'
 import opticals from '../assets/cloud.jpg'
+import { Link } from 'react-router-dom'
+
 
 function FirstPage() {
   return (
@@ -30,7 +32,7 @@ function FirstPage() {
         <div className='circleNine'></div>
 
         {/* main circle center */}
-        <div data-aos="zoom-in-up" className='circleOne d-flex justify-content-center p-2 ' style={{
+        <div className='circleOne d-flex justify-content-center p-2 ' style={{
           transform: 'scale(1)', // Initial state
           transition: 'transform 0.3s ease-in-out', // Smooth transition
         }} onMouseEnter={(e) => {
@@ -47,14 +49,16 @@ function FirstPage() {
                   <h1 className='text-dark shadow fs-1 fw-bold'>Event</h1>
                   <h2 className='text-dark shadow fs-2 fw-bold'>Management</h2>
                   <h4 className='text-dark fw-bold shadow'>System</h4>
-                  <button
-  className="rounded w-50 mt-2 glowing-button"
-  style={{ backgroundColor: '#e6ffff', border: 'none', cursor: 'pointer' }}
->
-  Start
-</button>
-  
-                         </div>
+                  <Link to={'/Landing'}>
+                    <button
+                      className="rounded w-100 mt-2 glowing-button"
+                      style={{ backgroundColor: '#e6ffff', border: 'none', cursor: 'pointer' }}
+                    >
+                      start
+                    </button>
+                  </Link>
+
+                </div>
               </div>
             </div>
           </div>
