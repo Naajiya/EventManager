@@ -121,17 +121,17 @@
   height: 90px;
   width: 110px;
   border-radius: 50%;
-  background-color: #aa2424;
+  background-color: #f8f8f8;
   position: relative;
   top: 10%;
   left: -10%;
 }
 
 .circleEight{
-  height: 60px;
+  height: 70px;
   width: 80px;
   border-radius: 50%;
-  background-color: #f1ebeb;
+  background-color: #ffffff;
   position: relative;
   top: 1%;
   left: -19%;
@@ -141,7 +141,7 @@
   height: 80px;
   width: 100px;
   border-radius: 100%;
-  background-color: #293d3d;
+  background-color: #9edddd;
   position: relative;
   top: 10%;
   left: -20%;
@@ -153,4 +153,70 @@
   width: 115px;
   border-radius: 50%;
   background-color: #e6ffff;
+}
+
+
+.head-style{
+  width: 100%;
+  /* display: flex; */
+  /* justify-content: center;
+  align-items: center; */
+  margin-top: 40%;
+}
+
+
+.move {
+  transform: translateX(50px); /* Move to the right */
+  transition: transform 0.3s ease-in-out;
+}
+
+.circleFour,
+.circleFive,
+.circleNine,
+.circleTwo,
+.circleThree {
+  transition: transform 0.3s ease-in-out;
+}
+
+
+.glowing-button {
+  position: relative;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+  padding: 10px 20px;
+  border-radius: 8px;
+  background-color: #e6ffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glowing-button::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.5), transparent 60%);
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.glowing-button:hover {
+  color: #a32a2a;
+  background-color: #0f4075;
+  box-shadow: 0 8px 20px rgb(6, 141, 141) ;
+}
+
+.glowing-button:hover::after {
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+.glowing-button:active {
+  transform: translateY(2px);
+  box-shadow: 0 4px 10px rgba(4, 29, 56, 0.2);
 }
