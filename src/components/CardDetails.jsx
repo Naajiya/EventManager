@@ -39,6 +39,11 @@ function CardDetails({ eventsEach }) {
 
 
 
+    const dragStarted=(e,event)=>{
+        console.log(`drag started with ${event}`)
+        e.dataTransfer.setData("eventId",event)
+    }
+
 
 
     return (
@@ -49,7 +54,7 @@ function CardDetails({ eventsEach }) {
 
 
 
-                    <Card className="border rounded-4 bg-secondary shadow " style={{ width: '11rem' }}>
+                    <Card draggable={true}onDragStart={(e) => dragStarted(e,eventsEach.id)} className="border rounded-4 bg-secondary shadow " style={{ width: '11rem' }}>
                         <div className='d-flex justify-content-between w-100 text-secondary-emphasis bg-light rounded-5 mt-1' >
 
                             <div onClick={() => handleDelete(eventsEach.id)} className='ms-3 mt-2'>

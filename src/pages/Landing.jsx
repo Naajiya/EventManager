@@ -6,10 +6,10 @@ import Modal from 'react-bootstrap/Modal';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import { addEvent, getEvent } from '../services/allApi';
-import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
+
 import CardDetails from '../components/CardDetails';
 import { Link } from 'react-router-dom';
+import HomeCalender from '../components/HomeCalender';
 
 
 
@@ -19,7 +19,7 @@ import { Link } from 'react-router-dom';
 
 function Landing() {
 
-    const [value, onChange] = useState(new Date());
+    
 
     const [eventDetails, setEventDetails] = useState({ eventName: '', eventPlace: '', eventDate: '', eventStartTime: '', eventEndsTime: '', })
     const [allEvents, setAllEvents] = useState([])
@@ -124,6 +124,8 @@ function Landing() {
     }
 
 
+   
+
     return (
 
         <>
@@ -179,10 +181,7 @@ function Landing() {
                     </Col>
                     <Col lg={4} className='d-flex  p-2 mt-5' style={{ marginTop: '10px' }}>
                         {/* <Calendr allEvents={allEvents}/> */}
-                        <div className=''>
-                            <h2>ToDay</h2>
-                            <Calendar onChange={onChange} value={value} />
-                        </div>
+                       <HomeCalender/>
                         {/* <Link to='/calender'><Button className='m-2' variant="primary">View your events by calender</Button></Link> */}
                     </Col>
                     {/* <Link to={`/FirstPage`}>lkm</Link> */}

@@ -17,3 +17,7 @@ export const deletEvent = async (evnt)=>{
 export const updateEvent= async (eventId,eventDetails)=>{
     return await commonAPI("PUT",`${SERVER_URL}/allEvents/${eventId}`,eventDetails)
 }
+
+export const getSinglEvent = async (eventId)=>{
+    return await commonAPI("GET", `${SERVER_URL}/allEvents/${eventId}`,{})
+}
